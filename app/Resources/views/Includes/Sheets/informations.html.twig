@@ -1,0 +1,14 @@
+<br/>
+
+<h1 style="margin: auto; padding:auto;">{{ sheet.name }}</h1>
+<h1 style="font-size: 24px;margin-top: -100px;padding:auto;">{{ sheet.artist }}, {{ sheet.released|date('d/m/Y') }}</h1>
+<div class="boite" style="width:80%;text-align:left;overflow: visible;">
+<h1 style="font-size: 24px;margin-top: -100px;">{{ sheet.type }}, {{ sheet.duration }}</h1>
+    {% if sheet.img is not null %}
+<img src="{{ sheet.img }}" class="imgAlbum" />
+    {% endif %}
+Vous possédez {{ sheet.name }}, de l'artiste {{ sheet.artist }}, en format {{ sheet.type }}.<br/>
+Sa durée est de {{ sheet.duration }} et son année de sortie est {{ sheet.released|date('Y') }}
+<br/></div>
+<a href="{{ path('edit', {'id': sheet.id} ) }}">Modifier cet objet</a><br/><br/>
+<a href="{{ path('delete', {'id': sheet.id, 'message': true} ) }}">Supprimer cet objet</a>

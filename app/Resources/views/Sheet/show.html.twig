@@ -1,0 +1,8 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Détails de l'objet</h1>
+    <div class="boite"> <a href="{{ path('list') }}">Retour à la liste</a>
+        {% include 'Includes/Sheets/informations.html.twig' %}
+    </div>
+{% endblock %}

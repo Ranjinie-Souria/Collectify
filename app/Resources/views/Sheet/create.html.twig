@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ajouter un objet</h1>
+    <div class="boite"> <a href="{{ path('list') }}">Retour à la liste</a><br/><br/>
+
+        {{ form_start(form) }}
+        {{ form_label(form.name) }} {{ form_widget(form.name) }} <br/> <br/>
+        {{ form_label(form.type) }} {{ form_widget(form.type) }} <br/> <br/>
+        {{ form_label(form.artist) }} {{ form_widget(form.artist) }} <br/> <br/>
+        {{ form_label(form.duration) }} {{ form_widget(form.duration) }} <br/> <br/>
+        {{ form_label(form.released) }} {{ form_widget(form.released) }} <br/> <br/>
+        {{ form_rest(form) }}
+
+    </div>
+{% endblock %}

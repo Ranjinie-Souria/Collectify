@@ -1,0 +1,6 @@
+{% extends 'base.html.twig' %}
+{% block body %}<h1>Modifications à votre collection</h1>
+    <div class="boite"> <a href="{{ path('list') }}">Retour à la liste</a><br/><br/>
+       <b> {{ app.session.flashbag.get('flash')[0] }} </b>
+    </div>
+{% endblock %}

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Collectify {% endblock %}</title>
+        {% block stylesheets %}
+            <style>html {
+            height: 100%;
+            }
+            body{
+            background: fixed linear-gradient(#191124,#90303d,#ed8240 200%);
+            margin: 0;
+            position: relative;
+            font-family: Arial, sans-serif;
+            color: white;
+            margin-left: auto;
+            margin-right: auto;
+            padding-bottom: 5em;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            }
+
+            footer {
+            position: absolute;
+            bottom: 0;
+            background-color: #191124;
+            width: 100%;
+            border-bottom: solid 1px #ab414f;
+            border-top: dashed 2px #ab414f;
+            height: 50px;
+            }
+            .boite{
+            overflow: auto;
+            margin-left: auto;
+            margin-right: auto;
+            position:relative;
+            background-color: RGBA(150, 3, 20, 0.3);
+            width: 70%;
+            height: 100%;
+            padding: 30px;
+                padding-top: 100px;
+                padding-bottom: 100px;
+            margin-bottom: 50px;
+            margin-top: 20px;
+            border-right: solid 2px #ab414f;
+            border-left: solid 2px #ab414f;
+            border-radius: 4px;
+            }
+
+
+            h1{
+            padding: 50px;
+            margin-left: 200px;
+            letter-spacing: 10px;
+            text-shadow: 3px 0px 0px #82323B;
+            font-family: Bahnschrift, sans-serif;
+
+            }
+
+            .titre{
+            margin-left: auto;
+            margin-right: auto;
+            font-family: Bahnschrift, sans-serif;
+                font-size: 60px;
+                text-shadow: 4px 0px 0px #82323B;
+                padding: 50px;
+                letter-spacing: 3px;
+            }
+
+            h2{
+            padding: 50px;
+            margin-left: auto;
+            letter-spacing: 1px;
+            margin-right: auto;
+            }
+
+            .navMain{
+            overflow: hidden;
+            font-size: 14px;
+            margin-left:auto;
+            margin-right:auto;
+            background: #191124 fixed;
+            width: 100%;
+            padding: 10px;
+            border-bottom: dashed 1px #ab414f;
+            border-top: solid 2px #ab414f;
+            }
+            .navMain a {
+            left:30%;
+            float:left;
+            display: block;
+                font-weight: bold;
+            color: #f2f2f2;
+            text-align: center;
+            padding: 5px 35px;
+            text-decoration: none;
+            }
+
+            a {
+            color: #ab4FFF;
+            text-decoration: none;
+            font-weight: bold;
+            }
+
+            a:hover {
+            color: #ab414f;
+            text-decoration: none;
+            }
+
+            .navMain a:hover {
+            color: #ab414f;
+            }
+
+
+            table{
+            background-color: #90303d;
+            width:100%;
+            height:60%;
+            padding: 5px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 50px;
+            margin-top: 50px;
+            border-right: solid 2px #C44153;
+            border-left: solid 2px #C44153;
+            border-radius: 4px;
+            }
+            th{
+                background-color: #5E242B;
+                width: 40%;
+                padding: 10px;
+                border-right: solid 2px #7F313A;
+                border-left: solid 2px #7F313A;
+                border-radius: 2px;
+            }
+            td{
+            background-color: #ab414f;
+            width: 40%;
+            padding: 10px;
+            border-right: solid 2px #7F313A;
+            border-left: solid 2px #7F313A;
+            border-radius: 2px;
+            }
+
+            .imgAlbum{
+                max-width: 250px;
+                min-width: 150px;
+                max-height: 200px;
+                min-height: 100px;
+                border: solid 2px #C44153;
+                border-radius: 2px;
+                position: absolute;
+                top: 50px;
+                left: 600px;
+            }
+            </style>
+
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>    {% include 'Includes/header.html.twig' %}
+
+    <body><div class="titre">Collectify</div>
+        {% block body %}{% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body></html>
+    {% include 'Includes/footer.html.twig' %}
+
