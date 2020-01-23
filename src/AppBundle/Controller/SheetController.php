@@ -44,42 +44,40 @@ class SheetController extends Controller
     /**
      * @Route("/sheet/create/{catName}", name="createCat")
      */
-    public function createInCatAction(Request $request, $catName)
-    {
-        $repository = $this->getDoctrine()->getManager()->getRepository('AppBundle:Category');
-        $categories = $repository->findAll();
-        if (isset($catName) && !empty($catName)) {
-            $this->getCatForm($request, $catName);
-        }
-        return $this->render('Sheet/Create/create.html.twig', array('categories' => $categories));
-    }
-
     public function getCatForm(Request $request, $catName)
     {
         $session = $this->get('session');
+        /*
+                $categorie = sprintf('%sSheet', ucfirst($catName));
+                $type = sprintf('%sType::class', ucfirst($catName));
+                $catName = $catName.'Sheet';
+                $categorie = new $categorie();*/
 
-        $categorie = sprintf('%sSheet', ucfirst($catName));
-        $type = sprintf('%sType::class', ucfirst($catName));
+        $repository = $this->getDoctrine()->getManager()->getRepository(Category::class)
+            ->findBy(array('name' => $catName));
+        $cat = $repository[0];
 
-        $categorie = new $categorie();
+        if ($cat->getId() == 1) {
+            $categorie = new AudioSheet();
+            $form = $this->createFormBuilder($categorie)
+                ->add('audio', AudioType::class, array('label' => ' '))
+                ->add('submit', SubmitType::class, array('label' => 'Ajouter'))
+                ->getForm();
+            $form->handleRequest($request);
 
-        $form = $this->createFormBuilder($categorie)
-            ->add($catName, $type, array('label' => ' '))
-            ->add('submit', SubmitType::class, array('label' => 'Ajouter'))
-            ->getForm();
-        $form->handleRequest($request);
+            if ($request->isMethod('post') && $form->isValid()) {
+                $em = $this->getDoctrine()->getManager();
 
-        if($request->isMethod('post')&&$form->isValid()){
-            $em = $this->getDoctrine()->getManager();
-
-            $em->persist($form->getData());
-            $em->flush();
-            $session->getFlashBag()->add('flash', 'Objet ajouté !');
-            return $this->render('Sheet/message.html.twig');
+                $em->persist($form->getData());
+                $em->flush();
+                $session->getFlashBag()->add('flash', 'Objet ajouté !');
+                return $this->render('Sheet/message.html.twig');
+            }
         }
 
-        return $this->render(':Sheet/Create:create.html.twig', array('form' => $form->createView()));
+        return $this->render('Sheet/Create/createSheet.html.twig', array('form' => $form->createView()));
     }
+
 
     /**
      * @Route("/sheet/{id}", name="show")

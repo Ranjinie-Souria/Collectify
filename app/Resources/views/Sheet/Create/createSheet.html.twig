@@ -1,4 +1,11 @@
-{% if form is defined %}
-    {{ form_start(form) }}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ajouter un objet</h1>
+    <div class="boite"><a href="{{ path('list') }}">Retour à la liste</a><br/><br/>
+
+        {{ form_start(form) }}
     {{ form_rest(form) }}
-{% endif %}
+
+    </div>
+{% endblock %}
