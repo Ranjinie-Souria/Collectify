@@ -8,7 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
  * Sheet
  *
  * @ORM\Table(name="sheet")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\SheetRepository")
+ * @ORM\Entity
+ * @ORM\MappedSuperclass
  */
 class Sheet
 {
@@ -19,49 +20,63 @@ class Sheet
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $name;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="type", type="string", length=255)
-     */
-    private $type;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="artist", type="string", length=255)
-     */
-    private $artist;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="duration", type="string", length=255)
-     */
-    private $duration;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="released", type="datetime")
-     */
-    private $released;
+    protected $name;
 
     /**
      * @var string
      *
      * @ORM\Column(name="img", type="string", length=255)
      */
-    private $img;
+    protected $img;
+
+    protected $released;
+
+    protected $newImg;
+    /**
+     * @ORM\Column(name="idcategory", type="integer")
+     */
+    protected $idcategory;
+
+    /**
+     * @return mixed
+     */
+    public function getReleased()
+    {
+        return $this->released;
+    }
+
+    /**
+     * @param mixed $released
+     */
+    public function setReleased($released)
+    {
+        $this->released = $released;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIdcategory()
+    {
+        return $this->idcategory;
+    }
+
+    /**
+     * @param mixed $idcategory
+     *
+     */
+    public function setIdcategory($idcategory)
+    {
+        $this->idcategory = $idcategory;
+    }
+
 
 
     /**
@@ -99,121 +114,48 @@ class Sheet
     }
 
     /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return Sheet
+     * Set img
      */
-    public function setType($type)
+    public function setImg($image)
     {
-        $this->type = $type;
+        $img = $_SERVER['DOCUMENT_ROOT'] . '/php/img/' . $this->name . '.png';
+        move_uploaded_file($image, $img);
+        $this->img = $this->name . '.png';
 
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
-
-    /**
-     * Set artist
-     *
-     * @param string $artist
-     *
-     * @return Sheet
-     */
-    public function setArtist($artist)
-    {
-        $this->artist = $artist;
-
-        return $this;
-    }
-
-    /**
-     * Get artist
-     *
-     * @return string
-     */
-    public function getArtist()
-    {
-        return $this->artist;
-    }
-
-    /**
-     * Set duration
-     *
-     * @param string $duration
-     *
-     * @return Sheet
-     */
-    public function setDuration($duration)
-    {
-        $this->duration = $duration;
-
-        return $this;
-    }
-
-    /**
-     * Get duration
-     *
-     * @return string
-     */
-    public function getDuration()
-    {
-        return $this->duration;
-    }
-
-    /**
-     * Set released
-     *
-     * @param \DateTime $released
-     *
-     * @return Sheet
-     */
-    public function setReleased($released)
-    {
-        $this->released = $released;
-
-        return $this;
-    }
-
-    /**
-     * Get released
-     *
-     * @return \DateTime
-     */
-    public function getReleased()
-    {
-        return $this->released;
-    }
-
-    public function setImg($img)
-    {
-        $name = $this->getName().$this->getType();
-        move_uploaded_file($img, $_SERVER['DOCUMENT_ROOT'].'/Collectify/web/img/'.$name.'.png');;
-        $this->img =  '/Collectify/web/img/'.$name.'.png';
-        return $this;
     }
 
     /**
      * Get img
      *
+     * @return string
      */
     public function getImg()
     {
-
         return $this->img;
     }
 
+    /**
+     * Set newImg
+     *
+     * @param string $newImg
+     *
+     * @return Sheet
+     */
+    public function setNewImg($newImg)
+    {
+        $this->setImg($newImg);
 
+        return $this;
+    }
 
-
+    /**
+     * Get newImg
+     *
+     * @return string
+     */
+    public function getNewImg()
+    {
+        return $this->newImg;
+    }
 }
 

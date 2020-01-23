@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Ajouter un objet</h1>
+    <div class="boite"><a href="{{ path('list') }}">Retour à la liste</a><br/><br/>
+
+        {% include 'Sheet/Create/createSheet.html.twig' %}
+
+        {% include 'Sheet/Create/default.html.twig' %}
+
+    </div>
+{% endblock %}
+

@@ -2,6 +2,7 @@
 
 {% block body %}
     <h1>Votre collection</h1>
+
     <div class="boite">
 
 
@@ -11,18 +12,26 @@
 <table>
     <tbody>
 
-    <tr><th></th><th>Nom</th><th>Artiste</th><th>Type</th><th>En savoir plus</th><th></th></tr>
+    <tr>
+        <th>Nom</th>
+        <th>Catégorie</th>
+        <th>En savoir plus</th>
+        <th></th>
+    </tr>
     {% for sheet in sheets %}
 
-    <tr><th>{{ sheet.name }} par {{ sheet.artist }} ( {{ sheet.type }} )</th>
-        <td>{{ sheet.name }}</td>
-        <td>{{ sheet.artist }}</td>
-        <td>{{ sheet.type }}</td>
-        <td><a href="{{ path('show', {'id' : sheet.id }) }}">Détails</a> </td>
+        <tr>
+            <td>{{ sheet.name }}</td>
+            <td>{% if sheet.idcategory == 1 %}Audio
+                {% elseif sheet.idcategory == 2 %}Vidéo
+                {% elseif sheet.idcategory == 3 %}Image{% endif %}
+            </td>
+            <td><a href="{{ path('show', {'id' : sheet.id }) }}">Détails</a></td>
         <td><a href="{{ path('delete', {'id': sheet.id, 'message': true} ) }}">X</a></td>
-    </tr>
+        </tr>
 
-    {% endfor %}   </tbody>
-                     </table>
+    {% endfor %}
+    </tbody>
+</table>
     </div>
 {% endblock %}

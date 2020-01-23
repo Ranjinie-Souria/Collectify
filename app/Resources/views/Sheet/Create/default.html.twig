@@ -1,0 +1,11 @@
+<p>Vous pouvez ajouter un objet à votre liste. </p>
+<br/>
+Voici les différentes catégories d'objets existant.<br/>
+<p>Quel type d'objet souhaitez-vous ajouter à votre liste ?</p><br/>
+<br/>
+{% for category in categories %}
+    <tr>
+        <td>{{ category.name }}</td>
+        <td><a href="{{ path('createCat', {'catName' : category.name}) }}">Créer un objet</a></td>
+    </tr>
+{% endfor %}
